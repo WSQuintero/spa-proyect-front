@@ -5,8 +5,7 @@ export const handleLogin = async (
   event: FormEvent<HTMLFormElement>,
   $login: LoginService,
   setToken: (token: string) => void,
-  setError: (token: string) => void,
-  navigate: (token: string) => void
+  setError: (token: string) => void
 ): Promise<void> => {
   event.preventDefault()
   const target = event.target as HTMLFormElement
@@ -21,7 +20,6 @@ export const handleLogin = async (
 
     if (response.status) {
       setToken(response.data.token)
-      navigate("/dashboard")
     } else {
       setError(response.data.message)
     }

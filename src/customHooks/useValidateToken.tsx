@@ -19,7 +19,6 @@ function useValidateToken() {
 
           if (status) {
             setToken(tn.tn)
-            navigate("/dashboard")
             setValidate(true)
           } else {
             setToken("")
