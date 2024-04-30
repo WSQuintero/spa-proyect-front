@@ -1,8 +1,10 @@
 import { ReactNode, useState } from "react"
 import SideBar from "./SideBar"
+import useValidateToken from "../customHooks/useValidateToken"
 
 function WraperContainer({ children }: { children: ReactNode }) {
   const [openSiderBar, setOpenSiderBar] = useState(true)
+  useValidateToken()
 
   return (
     <>

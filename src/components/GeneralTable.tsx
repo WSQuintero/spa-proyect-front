@@ -1,7 +1,7 @@
 function GeneralTable() {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table className="w-[96%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <caption className="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
           Our products
           <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -10,9 +10,9 @@ function GeneralTable() {
             business, and more.
           </p>
         </caption>
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
           <tr>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[20%]">
               Product name
             </th>
             <th scope="col" className="px-6 py-3">
@@ -30,7 +30,7 @@ function GeneralTable() {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 transition-transform hover:scale-[1.01] cursor-pointer">
             <th
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -47,7 +47,7 @@ function GeneralTable() {
               </a>
             </td>
           </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 transition-transform hover:scale-[1.01] cursor-pointer">
             <th
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -64,7 +64,7 @@ function GeneralTable() {
               </a>
             </td>
           </tr>
-          <tr className="bg-white dark:bg-gray-800">
+          <tr className="bg-white dark:bg-gray-800 transition-transform hover:scale-[1.01] cursor-pointer">
             <th
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

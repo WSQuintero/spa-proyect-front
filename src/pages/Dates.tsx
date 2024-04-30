@@ -2,7 +2,7 @@ import GeneralButton from "../components/GeneralButton"
 import GeneralTable from "../components/GeneralTable"
 import WraperContainer from "../components/WraperContainer"
 
-function Sales() {
+function Dates() {
   return (
     <WraperContainer>
       <div className="w-full p-2 flex justify-end">
@@ -13,4 +13,4 @@ function Sales() {
   )
 }
 
-export default Sales
+export default Dates

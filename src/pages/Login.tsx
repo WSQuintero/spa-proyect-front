@@ -1,4 +1,25 @@
+import { useContext, useState } from "react"
+import { handleLogin } from "../events/login.js"
+import { LoginContext } from "../context/LoginContext.tsx"
+import { LoginTypes } from "../types/Login"
+import { useNavigate } from "react-router"
+import useValidateToken from "../customHooks/useValidateToken.tsx"
+
 function Login() {
+  const [visible, setVisible] = useState(false)
+  const { $Login, setToken } = useContext(LoginContext)
+  const [error, setError] = useState<string>("")
+  const navigate = useNavigate()
+  useValidateToken()
+
+  const errors: LoginTypes = {
+    "Incorrect password": "Contraseña incorrecta",
+    "User not found": "Usuario no encontrado",
+    "Error in login": "Error en el inicio de sesión"
+  }
+
+  const translateError: string = errors[error] || ""
+
   return (
     <section className="relative flex flex-wrap lg:h-screen lg:items-center">
       <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
@@ -10,7 +31,12 @@ function Login() {
           </p>
         </div>
 
-        <form action="#" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <form
+          action="#"
+          className="mx-auto mb-0 mt-8 max-w-md space-y-4"
+          onSubmit={(event) =>
+            handleLogin(event, $Login, setToken, setError, navigate)
+          }>
           <div>
             <label htmlFor="email" className="sr-only">
               Email
@@ -19,6 +45,7 @@ function Login() {
             <div className="relative">
               <input
                 type="email"
+                name="email"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter email"
               />
@@ -48,12 +75,15 @@ function Login() {
 
             <div className="relative">
               <input
-                type="password"
+                type={`${!visible ? "password" : "text"}`}
+                name="password"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
               />
 
-              <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <span
+                className="absolute inset-y-0 end-0 grid place-content-center px-4 cursor-pointer"
+                onClick={() => setVisible(!visible)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="size-4 text-gray-400"
@@ -91,6 +121,7 @@ function Login() {
               Sign in
             </button>
           </div>
+          <span className="text-red-400">{translateError || ""}</span>
         </form>
       </div>
 

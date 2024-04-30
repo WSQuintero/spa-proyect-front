@@ -3,6 +3,8 @@ import Login from "../pages/Login"
 import Dashboard from "../pages/Dashboard"
 import Bills from "../pages/Bills"
 import Sales from "../pages/Sales"
+import Dates from "../pages/Dates"
+import PrivateRoute from "../components/PrivateRoute"
 
 const router = createBrowserRouter(
   [
@@ -12,15 +14,19 @@ const router = createBrowserRouter(
     },
     {
       path: "/dashboard",
-      element: <Dashboard />
+      element: <PrivateRoute element={<Dashboard />} />
     },
     {
       path: "/bills",
-      element: <Bills />
+      element: <PrivateRoute element={<Bills />} />
     },
     {
       path: "/sales",
-      element: <Sales />
+      element: <PrivateRoute element={<Sales />} />
+    },
+    {
+      path: "/dates",
+      element: <PrivateRoute element={<Dates />} />
     }
   ],
   {
