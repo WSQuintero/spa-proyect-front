@@ -2,8 +2,11 @@ import clsx from "clsx"
 import { IoIosArrowBack } from "react-icons/io"
 import { Link } from "react-router-dom"
 import { Sidebar } from "../types/Sidebar"
+import { CiLogout } from "react-icons/ci"
+import useLogout from "../customHooks/useLogout"
 
 function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
+  const logout = useLogout()
   return (
     <aside
       id="default-sidebar"
@@ -76,7 +79,12 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
               <span className="flex-1 ms-3 whitespace-nowrap">Ventas</span>
             </Link>
           </li>
-
+          <li className="mt-20 p-10 ">
+            <button onClick={() => logout()} className=" flex gap-2">
+              <CiLogout size={25} />
+              <span>Logout</span>
+            </button>
+          </li>
           <li className="mt-20 p-10 sm:hidden">
             <button onClick={() => setOpenSiderBar(false)}>
               <IoIosArrowBack size={30} />
