@@ -7,5 +7,6 @@ export const translations: { [key: string]: string } = {
   amount: "Monto",
   nameBill: "Nombre de la Factura",
   paid: "Pagado",
-  scheduler: "Agendador"
+  scheduler: "Agendador",
+  nameSale: "Tip de venta"
 }
