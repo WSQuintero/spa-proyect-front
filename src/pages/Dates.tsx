@@ -9,26 +9,42 @@ import ErrorAlert from "../components/ErrorAlert"
 import SuccessAlert from "../components/SuccessAlert"
 import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
+import ModalCreateSale from "../components/ModalCreateSale"
 
 function Dates() {
   const [openAlert, setOpenAlert] = useState(false)
   const { dates } = useGetDates({ openAlert })
   const [openModal, setOpenModal] = useState(false)
   const [openUpdateModal, setOpenUpdateModal] = useState(false)
-  const [initialState, setInitialState] = useState({})
+  const [initialState, setInitialState] = useState<TableData>({})
   const [createdTitle, setCreatedTitle] = useState("")
   const [createdMessage, setCreatedMessage] = useState("")
   const [openErrorAlert, setOpenErrorAlert] = useState(false)
   const { $Dates } = useContext(DataContext)
   const { token } = useContext(LoginContext)
+  const [openCreateSale, setOpenCreateSale] = useState(false)
 
-  const completeDate = async (initialState: TableData) => {
-    const resetAlert = () => {
-      setOpenAlert(false)
-      setOpenErrorAlert(false)
-      setCreatedTitle("")
-      setCreatedMessage("")
+  const resetAlert = () => {
+    setOpenAlert(false)
+    setOpenErrorAlert(false)
+    setCreatedTitle("")
+    setCreatedMessage("")
+  }
+  const openSale = async (initialState: TableData) => {
+    setInitialState(initialState)
+    if (initialState.completed === true) {
+      setOpenErrorAlert(true)
+      setCreatedTitle("Error")
+      setCreatedMessage("No se puede completar una cita ya completada")
+      setTimeout(() => {
+        resetAlert()
+      }, 2000)
+      return
     }
+    setOpenCreateSale(true)
+  }
+
+  const completeDate = async () => {
     const { status } = await $Dates.update({
       token,
       body: { completed: true },
@@ -53,7 +69,6 @@ function Dates() {
       }, 2000)
     }
   }
-
   const deleteDate = async (initialState: TableData) => {
     const resetAlert = () => {
       setOpenAlert(false)
@@ -99,7 +114,7 @@ function Dates() {
             setInitialState={setInitialState}
             setOpenAlert={setOpenAlert}
             openAlert={openAlert}
-            complete={completeDate}
+            complete={openSale}
             toDelete={deleteDate}
           />
         ) : (
@@ -135,6 +150,14 @@ function Dates() {
           setOpenErrorAlert={setOpenErrorAlert}
           title={createdTitle}
           message={createdMessage}
+        />
+      )}
+      {openCreateSale && (
+        <ModalCreateSale
+          setOpenModal={setOpenCreateSale}
+          setOpenAlert={setOpenAlert}
+          openAlert={openAlert}
+          completeDate={completeDate}
         />
       )}
     </>

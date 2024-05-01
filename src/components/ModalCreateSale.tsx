@@ -8,11 +8,13 @@ import ErrorAlert from "./ErrorAlert"
 function ModalCreateSale({
   setOpenModal,
   openAlert,
-  setOpenAlert
+  setOpenAlert,
+  completeDate
 }: {
   setOpenModal: (openModal: boolean) => void
   openAlert: boolean
   setOpenAlert: (openAlert: boolean) => void
+  completeDate: () => void
 }) {
   const { $Sales } = useContext(DataContext)
   const { token } = useContext(LoginContext)
@@ -43,7 +45,7 @@ function ModalCreateSale({
       setOpenAlert(true)
       setCreatedTitle("Correcto")
       setCreatedMessage("Venta creada correctamente")
-
+      completeDate()
       setTimeout(() => {
         resetAlert()
         setOpenModal(false)

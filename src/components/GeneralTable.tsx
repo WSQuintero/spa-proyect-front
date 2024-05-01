@@ -160,7 +160,8 @@ function GeneralTable({
                       onClick={() => {
                         setOpenUpdateModal(true)
                         setInitialState(dat)
-                      }}>
+                      }}
+                      disabled={dat.completed === true || dat.paid === true}>
                       Editar
                     </GeneralButton>
                   </td>

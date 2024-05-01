@@ -77,6 +77,7 @@ function Sales() {
           setOpenModal={setOpenModal}
           openAlert={openAlert}
           setOpenAlert={setOpenAlert}
+          completeDate={() => null}
         />
       )}
       {openUpdateModal && (
