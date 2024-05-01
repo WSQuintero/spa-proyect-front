@@ -1,94 +1,25 @@
 import { useLocation } from "react-router"
 import { translations } from "../translates/table"
 import GeneralButton from "./GeneralButton"
-import { useContext, useState } from "react"
-import { DataContext } from "../context/DataContext"
-import { LoginContext } from "../context/LoginContext"
-import SuccessAlert from "./SuccessAlert"
-import ErrorAlert from "./ErrorAlert"
 import { MdOutlineDelete } from "react-icons/md"
 
 function GeneralTable({
   data,
   setOpenUpdateModal,
   setInitialState,
-  setOpenAlert,
-  openAlert
+  complete,
+  toDelete
 }: {
   data: TableData[]
   setOpenUpdateModal: (openUpdateModal: boolean) => void
   setInitialState: (openInitialState: TableData) => void
   setOpenAlert: (openAlert: boolean) => void
   openAlert: boolean
+  complete: (initialState: TableData) => void
+  toDelete: (initialState: TableData) => void
 }) {
   const location = useLocation()
-  const { $Dates } = useContext(DataContext)
-  const { token } = useContext(LoginContext)
-  const [createdTitle, setCreatedTitle] = useState("")
-  const [createdMessage, setCreatedMessage] = useState("")
-  const [openErrorAlert, setOpenErrorAlert] = useState(false)
 
-  const completeDate = async (initialState: TableData) => {
-    const resetAlert = () => {
-      setOpenAlert(false)
-      setOpenErrorAlert(false)
-      setCreatedTitle("")
-      setCreatedMessage("")
-    }
-    const { status } = await $Dates.update({
-      token,
-      body: { completed: true },
-      id: String(initialState?.id)
-    })
-
-    if (status) {
-      setOpenAlert(true)
-      setCreatedTitle("Correcto")
-      setCreatedMessage("Cita completada correctamente")
-
-      setTimeout(() => {
-        resetAlert()
-      }, 2000)
-    } else {
-      setOpenErrorAlert(true)
-      setCreatedTitle("Error")
-      setCreatedMessage("Error al completar la cita")
-
-      setTimeout(() => {
-        resetAlert()
-      }, 2000)
-    }
-  }
-  const deleteDate = async (initialState: TableData) => {
-    const resetAlert = () => {
-      setOpenAlert(false)
-      setOpenErrorAlert(false)
-      setCreatedTitle("")
-      setCreatedMessage("")
-    }
-    const { status } = await $Dates.delete({
-      token,
-      id: String(initialState?.id)
-    })
-
-    if (status) {
-      setOpenAlert(true)
-      setCreatedTitle("Correcto")
-      setCreatedMessage("Cita eliminada correctamente")
-
-      setTimeout(() => {
-        resetAlert()
-      }, 2000)
-    } else {
-      setOpenErrorAlert(true)
-      setCreatedTitle("Error")
-      setCreatedMessage("Error al eliminar la cita")
-
-      setTimeout(() => {
-        resetAlert()
-      }, 2000)
-    }
-  }
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -127,7 +58,7 @@ function GeneralTable({
                   <td className="px-6 py-4 text-right">
                     <GeneralButton
                       onClick={() => {
-                        completeDate(dat)
+                        complete(dat)
                       }}>
                       Completar
                     </GeneralButton>
@@ -142,35 +73,22 @@ function GeneralTable({
                     Editar
                   </GeneralButton>
                 </td>
-                {location.pathname === "/dates" && (
-                  <td className="px-6 py-4 text-right">
-                    <GeneralButton
-                      onClick={() => {
-                        deleteDate(dat)
-                      }}>
-                      <MdOutlineDelete />
-                    </GeneralButton>
-                  </td>
-                )}
+                {location.pathname === "/dates" ||
+                  (location.pathname === "/bills" && (
+                    <td className="px-6 py-4 text-right">
+                      <GeneralButton
+                        onClick={() => {
+                          toDelete(dat)
+                        }}>
+                        <MdOutlineDelete />
+                      </GeneralButton>
+                    </td>
+                  ))}
               </tr>
             ))}
           </tbody>
         </table>
-        {openAlert && (
-          <SuccessAlert
-            setOpenAlert={setOpenAlert}
-            title={createdTitle}
-            message={createdMessage}
-          />
-        )}
       </div>
-      {openErrorAlert && (
-        <ErrorAlert
-          setOpenErrorAlert={setOpenErrorAlert}
-          title={createdTitle}
-          message={createdMessage}
-        />
-      )}
     </>
   )
 }

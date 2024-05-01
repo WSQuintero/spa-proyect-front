@@ -100,7 +100,7 @@ export class BillsService {
       }
 
       const response = await fetch(
-        `${import.meta.env.VITE_APP_URL}/dates/${id}`,
+        `${import.meta.env.VITE_APP_URL}/bills/${id}`,
         options
       )
       const data = await response.json()
