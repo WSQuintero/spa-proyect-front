@@ -57,7 +57,7 @@ function Bills() {
       <div className="w-full p-2 flex justify-end">
         <GeneralButton onClick={() => setOpenModal(true)}>Crear</GeneralButton>
       </div>
-      {bills ? (
+      {bills?.length ? (
         <GeneralTable
           data={bills}
           setOpenUpdateModal={setOpenUpdateModal}
@@ -68,7 +68,9 @@ function Bills() {
           toDelete={deleteBill}
         />
       ) : (
-        <div>hola</div>
+        <div className="text-center bg-gray-100 p-4">
+          No se encontraron gastos para mostrar
+        </div>
       )}
       {openModal && (
         <ModalCreateBill

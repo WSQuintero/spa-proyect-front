@@ -73,17 +73,15 @@ function GeneralTable({
                     Editar
                   </GeneralButton>
                 </td>
-                {location.pathname === "/dates" ||
-                  (location.pathname === "/bills" && (
-                    <td className="px-6 py-4 text-right">
-                      <GeneralButton
-                        onClick={() => {
-                          toDelete(dat)
-                        }}>
-                        <MdOutlineDelete />
-                      </GeneralButton>
-                    </td>
-                  ))}
+
+                <td className="px-6 py-4 text-right">
+                  <GeneralButton
+                    onClick={() => {
+                      toDelete(dat)
+                    }}>
+                    <MdOutlineDelete />
+                  </GeneralButton>
+                </td>
               </tr>
             ))}
           </tbody>

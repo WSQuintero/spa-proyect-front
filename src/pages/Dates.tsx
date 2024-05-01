@@ -104,7 +104,7 @@ function Dates() {
           />
         ) : (
           <div className="text-center bg-gray-100 p-4">
-            No se encontrarón citas para mostrar
+            No se encontraron citas para mostrar
           </div>
         )}
         {openModal && (

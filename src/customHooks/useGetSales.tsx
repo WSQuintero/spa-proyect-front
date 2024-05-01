@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 
-function useGetSales(): { sales: TableData[] | null; errorSales: unknown } {
+function useGetSales({ openAlert }: { openAlert: boolean }): {
+  sales: TableData[] | null
+  errorSales: unknown
+} {
   const { $Sales } = useContext(DataContext)
   const { token } = useContext(LoginContext)
   const [sales, setSales] = useState<TableData[] | null>(null)
@@ -15,7 +18,6 @@ function useGetSales(): { sales: TableData[] | null; errorSales: unknown } {
 
         if (status) {
           setSales(data)
-          console.log(data)
         } else {
           throw new Error(data)
         }
@@ -25,7 +27,7 @@ function useGetSales(): { sales: TableData[] | null; errorSales: unknown } {
     }
 
     getSales()
-  }, [$Sales, token])
+  }, [$Sales, token, openAlert])
 
   return { sales, errorSales }
 }

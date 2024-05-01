@@ -15,7 +15,7 @@ function ErrorAlert({
       className="fixed top-2 right-2 rounded-xl border border-gray-100 bg-white p-4">
       <div className="flex items-start gap-4">
         <span className="text-green-600">
-          <MdErrorOutline />
+          <MdErrorOutline color="red" />
         </span>
 
         <div className="flex-1">
