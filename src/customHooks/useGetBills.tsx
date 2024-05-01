@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 
-function useGetBills(): { bills: TableData[] | null; errorBills: unknown } {
+function useGetBills({ openAlert }: { openAlert: boolean }): {
+  bills: TableData[] | null
+  errorBills: unknown
+} {
   const { $Bills } = useContext(DataContext)
   const { token } = useContext(LoginContext)
   const [bills, setBills] = useState<TableData[] | null>(null)
@@ -15,7 +18,6 @@ function useGetBills(): { bills: TableData[] | null; errorBills: unknown } {
 
         if (status) {
           setBills(data)
-          console.log(data)
         } else {
           throw new Error(data)
         }
@@ -25,7 +27,7 @@ function useGetBills(): { bills: TableData[] | null; errorBills: unknown } {
     }
 
     getbills()
-  }, [$Bills, token])
+  }, [$Bills, token, openAlert])
 
   return { bills, errorBills }
 }

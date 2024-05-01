@@ -21,7 +21,7 @@ function Dates() {
             Crear
           </GeneralButton>
         </div>
-        {dates ? (
+        {dates?.length ? (
           <GeneralTable
             data={dates}
             setOpenUpdateModal={setOpenUpdateModal}
@@ -30,7 +30,9 @@ function Dates() {
             openAlert={openAlert}
           />
         ) : (
-          <div>hola</div>
+          <div className="text-center bg-gray-100 p-4">
+            No se encontrarón citas para mostrar
+          </div>
         )}
         {openModal && (
           <ModalCreateDate
