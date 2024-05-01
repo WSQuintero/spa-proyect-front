@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 
-function useGetDates(): { dates: TableData[] | null; errorDates: unknown } {
+function useGetDates({ openAlert }: { openAlert: boolean }): {
+  dates: TableData[] | null
+  errorDates: unknown
+} {
   const { $Dates } = useContext(DataContext)
   const { token } = useContext(LoginContext)
   const [dates, setDates] = useState<TableData[] | null>(null)
@@ -33,7 +36,7 @@ function useGetDates(): { dates: TableData[] | null; errorDates: unknown } {
     }
 
     getDates()
-  }, [$Dates, token])
+  }, [$Dates, token, openAlert])
 
   return { dates, errorDates }
 }
