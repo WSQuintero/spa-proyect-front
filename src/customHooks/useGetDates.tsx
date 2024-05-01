@@ -17,16 +17,7 @@ function useGetDates({ openAlert }: { openAlert: boolean }): {
         const { status, data } = await $Dates.get({ token })
 
         if (status) {
-          setDates(
-            data.map((dat: TableData) => ({
-              id: dat.id,
-              clientName: dat.clientName,
-              clientPhone: dat.clientPhone,
-              date: dat.date,
-              scheduler: dat.scheduler,
-              requestedService: dat.requestedService
-            }))
-          )
+          setDates(data)
         } else {
           throw new Error(data)
         }

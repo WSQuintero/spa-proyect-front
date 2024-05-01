@@ -5,14 +5,16 @@ import { LoginContext } from "../context/LoginContext"
 import SuccessAlert from "./SuccessAlert"
 import ErrorAlert from "./ErrorAlert"
 
-function ModalCreateDate({
+function ModalUpdateDate({
   setOpenModal,
   openAlert,
-  setOpenAlert
+  setOpenAlert,
+  initialState
 }: {
   setOpenModal: (openModal: boolean) => void
   openAlert: boolean
   setOpenAlert: (openAlert: boolean) => void
+  initialState: TableData
 }) {
   const { $Dates } = useContext(DataContext)
   const { token } = useContext(LoginContext)
@@ -31,15 +33,16 @@ function ModalCreateDate({
   }
 
   const onSubmit = async (finalData: TableData) => {
-    const { status } = await $Dates.create({
+    const { status } = await $Dates.update({
       token,
-      body: { ...finalData, completed: false }
+      body: finalData,
+      id: String(initialState?.id)
     })
 
     if (status) {
       setOpenAlert(true)
       setCreatedTitle("Correcto")
-      setCreatedMessage("Cita creada correctamente")
+      setCreatedMessage("Cita actualizada correctamente")
 
       setTimeout(() => {
         resetAlert()
@@ -48,7 +51,7 @@ function ModalCreateDate({
     } else {
       setOpenErrorAlert(true)
       setCreatedTitle("Error")
-      setCreatedMessage("Error al crear la cita")
+      setCreatedMessage("Error al actualizar la cita")
 
       setTimeout(() => {
         resetAlert()
@@ -63,7 +66,7 @@ function ModalCreateDate({
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 overflow-auto max-h-[90vh]">
             <div className="flex items-center justify-between p-2 md:px-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Agendar nueva cita
+                Actualizar cita
               </h3>
               <button
                 type="button"
@@ -98,7 +101,7 @@ function ModalCreateDate({
                   <Controller
                     name="scheduler"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.scheduler}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -120,7 +123,7 @@ function ModalCreateDate({
                   <Controller
                     name="clientName"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.clientName}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -141,7 +144,7 @@ function ModalCreateDate({
                   <Controller
                     name="clientPhone"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.clientPhone}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -162,7 +165,7 @@ function ModalCreateDate({
                   <Controller
                     name="date"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.date}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -180,7 +183,7 @@ function ModalCreateDate({
                   <Controller
                     name="appointmentTime"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.appointmentTime}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -206,7 +209,7 @@ function ModalCreateDate({
                   <Controller
                     name="endTime"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.endTime}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -228,7 +231,7 @@ function ModalCreateDate({
                   <Controller
                     name="requestedService"
                     control={control}
-                    defaultValue=""
+                    defaultValue={initialState?.requestedService}
                     render={({ field }) => (
                       <textarea
                         {...field}
@@ -253,7 +256,7 @@ function ModalCreateDate({
                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                     clipRule="evenodd"></path>
                 </svg>
-                Agregar nueva cita
+                Actualizar cita
               </button>
             </form>
           </div>
@@ -277,4 +280,4 @@ function ModalCreateDate({
   )
 }
 
-export default ModalCreateDate
+export default ModalUpdateDate

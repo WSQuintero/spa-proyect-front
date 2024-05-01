@@ -4,11 +4,14 @@ import GeneralTable from "../components/GeneralTable"
 import ModalCreateDate from "../components/ModalCreateDate"
 import WraperContainer from "../components/WraperContainer"
 import useGetDates from "../customHooks/useGetDates"
+import ModalUpdateDate from "../components/ModalUpdateDate"
 
 function Dates() {
   const [openAlert, setOpenAlert] = useState(false)
   const { dates } = useGetDates({ openAlert })
   const [openModal, setOpenModal] = useState(false)
+  const [openUpdateModal, setOpenUpdateModal] = useState(false)
+  const [initialState, setInitialState] = useState({})
 
   return (
     <>
@@ -18,12 +21,30 @@ function Dates() {
             Crear
           </GeneralButton>
         </div>
-        {dates ? <GeneralTable data={dates} /> : <div>hola</div>}
+        {dates ? (
+          <GeneralTable
+            data={dates}
+            setOpenUpdateModal={setOpenUpdateModal}
+            setInitialState={setInitialState}
+            setOpenAlert={setOpenAlert}
+            openAlert={openAlert}
+          />
+        ) : (
+          <div>hola</div>
+        )}
         {openModal && (
           <ModalCreateDate
             setOpenModal={setOpenModal}
             openAlert={openAlert}
             setOpenAlert={setOpenAlert}
+          />
+        )}
+        {openUpdateModal && (
+          <ModalUpdateDate
+            setOpenModal={setOpenUpdateModal}
+            openAlert={openAlert}
+            setOpenAlert={setOpenAlert}
+            initialState={initialState}
           />
         )}
       </WraperContainer>

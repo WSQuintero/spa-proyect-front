@@ -12,7 +12,7 @@ function ErrorAlert({
   return (
     <div
       role="alert"
-      className="rounded-xl border border-gray-100 bg-white p-4">
+      className="fixed top-2 right-2 rounded-xl border border-gray-100 bg-white p-4">
       <div className="flex items-start gap-4">
         <span className="text-green-600">
           <MdErrorOutline />

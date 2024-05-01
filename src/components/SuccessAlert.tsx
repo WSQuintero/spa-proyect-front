@@ -10,7 +10,7 @@ function SuccessAlert({
   return (
     <div
       role="alert"
-      className="rounded-xl border border-gray-100 bg-white p-4 absolute top-2 right-2">
+      className="rounded-xl border border-gray-100 bg-white p-4 fixed top-2 right-2">
       <div className="flex items-start gap-4">
         <span className="text-green-600">
           <svg
