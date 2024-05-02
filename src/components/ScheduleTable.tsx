@@ -1,42 +1,55 @@
-import React from "react"
+import {
+  addHourToTime,
+  convertTo12HourFormat,
+  getDaysOfWeekStartingFromMonday
+} from "../assets/utils/utils"
 import useGetDates from "../customHooks/useGetDates"
 
 function ScheduleTable() {
   const hours = [
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "1:00 PM",
-    "2:00 PM",
-    "3:00 PM",
-    "4:00 PM",
-    "5:00 PM",
-    "6:00 PM",
-    "7:00 PM"
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00"
   ]
 
-  const days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
+  const days = [
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+    "Domingo"
+  ]
 
   const { dates } = useGetDates({ openAlert: true })
 
-  // Función para verificar si una cita está programada para una hora y día específicos
-  const isAppointmentScheduled = (day: string, hour: string) => {
-    const startHour = hour.replace(" AM", "").replace(" PM", "") // Elimina " AM" o " PM" para obtener la hora sin la parte de AM/PM
+  const daysOfWeekStartingFromMonday = getDaysOfWeekStartingFromMonday()
 
-    // Calcula la hora siguiente (hour + 1)
-    const nextHour = parseInt(startHour) + 1
-    const endHour = nextHour < 10 ? "0" + nextHour : nextHour.toString()
+  // Función para verificar si un turno está ocupado en un día y hora específicos
+  const isSlotOccupied = (day, hour) => {
+    // Recorre todas las citas para verificar si hay alguna que coincida con el día y hora especificados
 
-    // Formatea la hora de inicio y la hora final en el formato "HH:MM"
-    const startTime = `${startHour}:00`
-    const endTime = `${endHour}:00`
-
-    // Verifica si alguna cita coincide con el día y el rango de horas
-    return dates?.some(
-      (date) =>
-        days[new Date(String(date.date)).getDay()] === day &&
-        (date.appointmentTime === startTime || date.endTime === endTime)
-    )
+    return dates?.some((date) => {
+      const dateHour = date.appointmentTime.split(":")[0]
+      // Verifica si la cita está en el mismo día y si su hora de inicio coincide con el intervalo de la tabla
+      console.log(hour.split(":")[0])
+      if (
+        date.date === day &&
+        parseInt(dateHour) <= parseInt(hour.split(":")[0]) &&
+        parseInt(date.endTime.split(":")[0]) > parseInt(hour.split(":")[0])
+      ) {
+        return true
+      }
+      return false
+    })
   }
 
   return (
@@ -45,8 +58,10 @@ function ScheduleTable() {
         <thead>
           <tr>
             <th className="border border-gray-200 p-2"></th>
-            {days.map((day, index) => (
+            {daysOfWeekStartingFromMonday.map((day, index) => (
               <th key={index} className="border border-gray-200 p-2">
+                {days[index]}
+                <br />
                 {day}
               </th>
             ))}
@@ -55,12 +70,14 @@ function ScheduleTable() {
         <tbody>
           {hours.map((hour, hourIndex) => (
             <tr key={hourIndex}>
-              <td className="border border-gray-200 p-2">{hour}</td>
-              {days.map((day, dayIndex) => (
+              <td className="border border-gray-200 p-2">
+                {convertTo12HourFormat(hour)}
+              </td>
+              {daysOfWeekStartingFromMonday.map((day, dayIndex) => (
                 <td
                   key={dayIndex}
                   className={`border border-gray-200 p-2 ${
-                    isAppointmentScheduled(day, hour) ? "bg-green-300" : ""
+                    isSlotOccupied(day, hour) ? "bg-green-500" : ""
                   }`}></td>
               ))}
             </tr>
