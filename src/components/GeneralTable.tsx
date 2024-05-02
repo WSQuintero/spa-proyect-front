@@ -5,6 +5,7 @@ import { MdOutlineDelete } from "react-icons/md"
 import React, { ChangeEvent, useState } from "react"
 import { orderBills, orderDates, orderSales } from "../constants/constants"
 import { convertTo12HourFormat, formatCurrency } from "../assets/utils/utils"
+import ModalDetailInformation from "./ModalDetailInformation"
 
 function GeneralTable({
   data,
@@ -26,6 +27,7 @@ function GeneralTable({
   const [filterData, setFilterData] = useState<{
     data: TableData[]
   }>({ data: [] })
+  const [actualElement, setActualElement] = useState<TableData | undefined>()
 
   const handleFilter = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
@@ -46,11 +48,14 @@ function GeneralTable({
       <div className="w-full flex justify-end">
         <GeneralButton
           type="button"
-          onClick={() => setFilterData({ data: [] })}>
+          onClick={(event) => {
+            event.stopPropagation()
+            setFilterData({ data: [] })
+          }}>
           Restaurar filtros
         </GeneralButton>
       </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
         <table className="w-[96%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -138,6 +143,7 @@ function GeneralTable({
               (dat) => (
                 <tr
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 transition-transform hover:scale-[1.01] cursor-pointer w-[400px]"
+                  onClick={() => setActualElement(dat)}
                   key={String(dat.id)}>
                   {Object.keys(data[0] || {})
                     .sort((a, b) => {
@@ -172,7 +178,8 @@ function GeneralTable({
                   {location.pathname === "/dates" && (
                     <td className="px-6 py-4 text-right">
                       <GeneralButton
-                        onClick={() => {
+                        onClick={(event) => {
+                          event.stopPropagation()
                           complete(dat)
                         }}>
                         Completar
@@ -181,7 +188,8 @@ function GeneralTable({
                   )}
                   <td className="px-6 py-4 text-right">
                     <GeneralButton
-                      onClick={() => {
+                      onClick={(event) => {
+                        event.stopPropagation()
                         setOpenUpdateModal(true)
                         setInitialState(dat)
                       }}
@@ -192,7 +200,8 @@ function GeneralTable({
 
                   <td className="px-6 py-4 text-right">
                     <GeneralButton
-                      onClick={() => {
+                      onClick={(event) => {
+                        event.stopPropagation()
                         toDelete(dat)
                       }}>
                       <MdOutlineDelete />
@@ -204,6 +213,12 @@ function GeneralTable({
           </tbody>
         </table>
       </div>
+      {actualElement?.id && (
+        <ModalDetailInformation
+          data={actualElement}
+          setActualElement={setActualElement}
+        />
+      )}
     </>
   )
 }

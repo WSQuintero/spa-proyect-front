@@ -103,7 +103,11 @@ function Dates() {
     <>
       <WraperContainer>
         <div className="w-full p-2 flex justify-end">
-          <GeneralButton onClick={() => setOpenModal(true)}>
+          <GeneralButton
+            onClick={(event) => {
+              event.stopPropagation()
+              setOpenModal(true)
+            }}>
             Crear
           </GeneralButton>
         </div>

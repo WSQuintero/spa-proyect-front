@@ -30,10 +30,12 @@ function ModalFilterStatistics({
             type="number"
             placeholder="Año"
             value={year}
-            min="1900"
-            max="2100"
+            min={1900}
+            max={2100}
             step="1"
-            onChange={(event) => setYear(event.target.value)}
+            onChange={(event) => {
+              Number(event.target.value) < 2100 && setYear(event.target.value)
+            }}
             className="text-center sm:w-2/4 w-full"
           />
           <select

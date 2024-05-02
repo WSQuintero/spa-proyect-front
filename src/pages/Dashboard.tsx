@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react"
 import WraperContainer from "../components/WraperContainer"
-import GeneralButton from "../components/GeneralButton"
 import ModalFilterStatistics from "../components/ModalFilterStatistics"
 import useGetStatistics from "../customHooks/useGetStatistics"
 import CardStatistic from "../components/CardStatistic"
 import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 import ErrorAlert from "../components/ErrorAlert"
-import ScheduleTable from "../components/ScheduleTable"
 import PieChart from "../components/PieChart"
 
 function Dashboard() {
@@ -17,7 +15,6 @@ function Dashboard() {
   const { statistics } = useGetStatistics()
   const { $Statistics } = useContext(DataContext)
   const { token } = useContext(LoginContext)
-  const [openFilter, setOpenFilter] = useState(false)
   const [year, setYear] = useState(String(actualYear))
   const [month, setMonth] = useState(String(actualMonth))
   const [createdTitle, setCreatedTitle] = useState("")
@@ -57,14 +54,8 @@ function Dashboard() {
 
   return (
     <WraperContainer>
-      <div className="w-full flex justify-end">
-        <GeneralButton onClick={() => setOpenFilter(!openFilter)}>
-          {!openFilter ? "Filtrar estadísticas" : "Guardar filtro"}
-        </GeneralButton>
-      </div>
-
       <div className="flex sm:flex-row flex-col justify-around items-center">
-        {openFilter && (
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full h-full flex flex-col sm:flex-row justify-around items-center">
           <ModalFilterStatistics
             setYear={setYear}
             year={year}
@@ -72,20 +63,21 @@ function Dashboard() {
             setMonth={setMonth}
             getStatistics={getStatistics}
           />
-        )}
-        <CardStatistic filterStatistics={filterStatistics} />
-        {openErrorAlert && (
-          <ErrorAlert
-            setOpenErrorAlert={setOpenErrorAlert}
-            title={createdTitle}
-            message={createdMessage}
-          />
-        )}
+          <CardStatistic filterStatistics={filterStatistics} />
+          {openErrorAlert && (
+            <ErrorAlert
+              setOpenErrorAlert={setOpenErrorAlert}
+              title={createdTitle}
+              message={createdMessage}
+            />
+          )}
+        </div>
       </div>
       <div className="w-full h-[500px] p-5 items-center">
-        <PieChart filterStatistics={filterStatistics} />
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full h-full">
+          <PieChart filterStatistics={filterStatistics} />
+        </div>
       </div>
-      <ScheduleTable />
     </WraperContainer>
   )
 }

@@ -5,6 +5,8 @@ import Bills from "../pages/Bills"
 import Sales from "../pages/Sales"
 import Dates from "../pages/Dates"
 import PrivateRoute from "../components/PrivateRoute"
+import ClientPage from "../pages/ClientPage"
+import Schedule from "../pages/Schedule"
 
 const router = createBrowserRouter(
   [
@@ -27,6 +29,14 @@ const router = createBrowserRouter(
     {
       path: "/dates",
       element: <PrivateRoute element={<Dates />} />
+    },
+    {
+      path: "/schedule",
+      element: <PrivateRoute element={<Schedule />} />
+    },
+    {
+      path: "/",
+      element: <ClientPage />
     }
   ],
   {

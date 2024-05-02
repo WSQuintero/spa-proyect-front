@@ -28,7 +28,7 @@ function ScheduleTable() {
   }, [dates])
 
   return (
-    <div className="overflow-x-auto mt-5">
+    <div className="overflow-x-auto mt-5 w-full">
       <table className="min-w-full border-collapse border border-gray-200">
         <thead>
           <tr>

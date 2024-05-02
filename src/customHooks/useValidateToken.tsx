@@ -25,6 +25,7 @@ function useValidateToken() {
             navigate("/login")
             localStorage.removeItem("s_p_a")
             setValidate(false)
+            return
           }
         } catch (error) {
           console.error("Error occurred while validating session:", error)
