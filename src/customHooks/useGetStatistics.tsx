@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
+import { PieChartType } from "../types/PieChartType"
 
 function useGetStatistics(): {
   statistics: TableData[] | null

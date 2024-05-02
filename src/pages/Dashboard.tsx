@@ -8,6 +8,7 @@ import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 import ErrorAlert from "../components/ErrorAlert"
 import ScheduleTable from "../components/ScheduleTable"
+import PieChart from "../components/PieChart"
 
 function Dashboard() {
   const actualDate = new Date()
@@ -80,6 +81,9 @@ function Dashboard() {
             message={createdMessage}
           />
         )}
+      </div>
+      <div className="w-full h-[500px] p-5 items-center">
+        <PieChart filterStatistics={filterStatistics} />
       </div>
       <ScheduleTable />
     </WraperContainer>

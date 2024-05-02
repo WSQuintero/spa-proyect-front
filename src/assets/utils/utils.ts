@@ -1,6 +1,6 @@
 export function formatCurrency(number: number) {
   const parts = number.toFixed(0).toString().split(".")
-  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
   return "$" + integerPart
 }
@@ -44,7 +44,7 @@ export function convertTo12HourFormat(time24h: string) {
   let hours12h = parseInt(hours, 10)
   const amPm = hours12h >= 12 ? "pm" : "am"
   if (hours12h === 0) {
-    hours12h = 12 // 12:00 am
+    hours12h = 12
   } else if (hours12h > 12) {
     hours12h -= 12
   }

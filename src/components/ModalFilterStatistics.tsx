@@ -1,3 +1,4 @@
+import { months } from "../constants/constants"
 import GeneralButton from "./GeneralButton"
 
 function ModalFilterStatistics({
@@ -13,6 +14,9 @@ function ModalFilterStatistics({
   setMonth: (month: string) => void
   getStatistics: () => void
 }) {
+  const sortedMonths = Object.entries(months).sort(
+    (a, b) => parseInt(a[0]) - parseInt(b[0])
+  )
   return (
     <div id="crud-modal" className=" w-full max-w-md rounded-lg shadow p-5">
       <div className="relative p-4 w-full max-w-md max-h-full flex flex-col justify-center items-center gap-5">
@@ -36,19 +40,12 @@ function ModalFilterStatistics({
             value={month}
             onChange={(event) => setMonth(event.target.value)}
             className="text-center sm:w-2/4 w-full">
-            <option value="">Seleccione un mes</option>
-            <option value="01">Enero</option>
-            <option value="02">Febrero</option>
-            <option value="03">Marzo</option>
-            <option value="04">Abril</option>
-            <option value="05">Mayo</option>
-            <option value="06">Junio</option>
-            <option value="07">Julio</option>
-            <option value="08">Agosto</option>
-            <option value="09">Septiembre</option>
-            <option value="10">Octubre</option>
-            <option value="11">Noviembre</option>
-            <option value="12">Diciembre</option>
+            <option value={""}>Seleccione un mes</option>
+            {sortedMonths.map((month) => (
+              <option key={month[1]} value={month[0]}>
+                {month[1]}
+              </option>
+            ))}
           </select>
         </div>
         <GeneralButton

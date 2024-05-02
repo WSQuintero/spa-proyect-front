@@ -2,13 +2,15 @@ import { ReactNode, useState } from "react"
 import SideBar from "./SideBar"
 
 function WraperContainer({ children }: { children: ReactNode }) {
-  const [openSiderBar, setOpenSiderBar] = useState(true)
+  const [openSiderBar, setOpenSiderBar] = useState(
+    window.innerWidth > 1040 ? true : false
+  )
   return (
-    <>
+    <div className="flex gap-2 w-[99vw] overflow-hidden h-screen">
       <button
         onClick={() => setOpenSiderBar(!openSiderBar)}
         type="button"
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg h-[40px] fixed sm:relative sm:h-screen hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg- border border-gray-300 dark:focus:ring-gray-600 bg-white">
         <span className="sr-only">Open sidebar</span>
         <svg
           className="w-6 h-6"
@@ -24,12 +26,12 @@ function WraperContainer({ children }: { children: ReactNode }) {
       </button>
       <SideBar openSiderBar={openSiderBar} setOpenSiderBar={setOpenSiderBar} />
 
-      <div className="p-4 sm:ml-64">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+      <div className="p-4 max-w-[100%] min-w-[80%] w-full overflow-auto">
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full min-h-[90vh]">
           {children}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

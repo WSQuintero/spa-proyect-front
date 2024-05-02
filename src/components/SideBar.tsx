@@ -11,8 +11,8 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
     <aside
       id="default-sidebar"
       className={clsx(
-        "fixed top-0 left-0 z-40 w-64 h-screen transition-transform    sm:translate-x-0",
-        !openSiderBar && "-translate-x-full",
+        " top-0 left-0 z-40 w-full sm:w-64 h-screen transition-transform absolute sm:relative ",
+        !openSiderBar && "-translate-x-full sm:hidden",
         openSiderBar && "translate-x-0"
       )}
       aria-label="Sidebar">
