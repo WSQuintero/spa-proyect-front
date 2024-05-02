@@ -4,7 +4,7 @@ import WraperContainer from "../components/WraperContainer"
 function Schedule() {
   return (
     <WraperContainer>
-      <div className="flex justify-center items-center w-full p-4">
+      <div className="flex justify-center items-center w-full p-2">
         <ScheduleTable />
       </div>
     </WraperContainer>

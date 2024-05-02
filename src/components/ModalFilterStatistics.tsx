@@ -42,7 +42,9 @@ function ModalFilterStatistics({
             value={month}
             onChange={(event) => setMonth(event.target.value)}
             className="text-center sm:w-2/4 w-full">
-            <option value={""}>Seleccione un mes</option>
+            <option value={""} disabled>
+              Seleccione un mes
+            </option>
             {sortedMonths.map((month) => (
               <option key={month[1]} value={month[0]}>
                 {month[1]}

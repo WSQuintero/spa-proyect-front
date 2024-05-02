@@ -28,13 +28,13 @@ function ScheduleTable() {
   }, [dates])
 
   return (
-    <div className="overflow-x-auto mt-5 w-full">
-      <table className="min-w-full border-collapse border border-gray-200">
+    <div className="overflow-x-auto  w-full border border-gray-600">
+      <table className="min-w-full border-collapse border border-gray-800 ">
         <thead>
           <tr>
-            <th className="border border-gray-200 p-2"></th>
+            <th className="border border-gray-800 p-2"></th>
             {daysOfWeekStartingFromMonday?.map((day, index) => (
-              <th key={index} className="border border-gray-200 p-2">
+              <th key={index} className="border border-gray-800 p-2 ">
                 {days[index]}
                 <br />
                 {day}
@@ -42,10 +42,10 @@ function ScheduleTable() {
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="">
           {hours.map((hour, hourIndex) => (
             <tr key={hourIndex}>
-              <td className="border border-gray-200 p-2">
+              <td className="border border-gray-800 p-2 text-center">
                 {convertTo12HourFormat(hour)}
               </td>
               {daysOfWeekStartingFromMonday?.map((day, dayIndex) => (

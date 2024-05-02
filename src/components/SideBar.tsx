@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { IoIosArrowBack } from "react-icons/io"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Sidebar } from "../types/Sidebar"
 import { CiLogout } from "react-icons/ci"
 import useLogout from "../customHooks/useLogout"
@@ -23,9 +23,15 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul className="space-y-2 font-medium">
           <li>
-            <Link
+            <NavLink
               to="/dashboard"
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  : isActive
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
+                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+              }>
               <svg
                 className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                 aria-hidden="true"
@@ -36,44 +42,68 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
               </svg>
               <span className="ms-3">Dashboard</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/dates"
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  : isActive
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
+                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+              }>
               <GrSchedule />
 
               <span className="flex-1 ms-3 whitespace-nowrap">Citas</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/bills"
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  : isActive
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
+                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+              }>
               <GiExpense />
 
               <span className="flex-1 ms-3 whitespace-nowrap">Gastos</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/sales"
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  : isActive
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
+                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+              }>
               <MdPointOfSale />
               <span className="flex-1 ms-3 whitespace-nowrap">Ventas</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/schedule"
-              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  : isActive
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
+                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+              }>
               <GrSchedules />
 
               <span className="flex-1 ms-3 whitespace-nowrap">Horario</span>
-            </Link>
+            </NavLink>
           </li>
-          <li className="mt-20 p-10 ">
+          <li className="pt-20">
             <button onClick={() => logout()} className=" flex gap-2">
               <CiLogout size={25} />
               <span>Logout</span>
