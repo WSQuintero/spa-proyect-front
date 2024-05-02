@@ -69,7 +69,7 @@ function ModalUpdateBill({
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 overflow-auto max-h-[90vh]">
             <div className="flex items-center justify-between p-2 md:px-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Agendar nuevo gasto
+                Actualizar gasto
               </h3>
               <button
                 type="button"
@@ -99,7 +99,7 @@ function ModalUpdateBill({
                   <label
                     htmlFor="scheduler"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    ¿Quien crea gasto?
+                    ¿Quien actualiza gasto?
                   </label>
                   <Controller
                     name="scheduler"
@@ -214,7 +214,7 @@ function ModalUpdateBill({
                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                     clipRule="evenodd"></path>
                 </svg>
-                Agregar nuevo gasto
+                Actualizar gasto
               </button>
             </form>
           </div>
