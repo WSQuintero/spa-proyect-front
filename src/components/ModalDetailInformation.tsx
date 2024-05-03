@@ -18,7 +18,9 @@ function ModalDetailInformation({
         <>
           <GeneralButton
             className="absolute top-2 right-2"
-            onClick={(event) => {
+            onClick={(
+              event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+            ) => {
               event.stopPropagation()
               setActualElement({})
             }}>

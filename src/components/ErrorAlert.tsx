@@ -1,14 +1,7 @@
 import { MdErrorOutline } from "react-icons/md"
+import { ErrorAlertType } from "../types/ErrorAlertType"
 
-function ErrorAlert({
-  title,
-  message,
-  setOpenErrorAlert
-}: {
-  title: string
-  message: string
-  setOpenErrorAlert: (openErrorAlert: boolean) => void
-}) {
+function ErrorAlert({ title, message, setOpenErrorAlert }: ErrorAlertType) {
   return (
     <div
       role="alert"

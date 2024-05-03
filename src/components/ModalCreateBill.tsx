@@ -16,7 +16,6 @@ function ModalCreateBill({
 }) {
   const { $Bills } = useContext(DataContext)
   const { token } = useContext(LoginContext)
-
   const { handleSubmit, control } = useForm()
   const [createdTitle, setCreatedTitle] = useState("")
   const [createdMessage, setCreatedMessage] = useState("")
@@ -35,7 +34,7 @@ function ModalCreateBill({
       body: {
         ...finalData,
         amount: Number(finalData.amount),
-        paid: finalData.paid === "true"
+        paid: String(finalData.paid) === "true"
       }
     })
 

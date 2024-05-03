@@ -1,4 +1,5 @@
 import { months } from "../constants/constants"
+import { ModalFilterStatisticsType } from "../types/ModalFilterStatisticsType"
 import GeneralButton from "./GeneralButton"
 
 function ModalFilterStatistics({
@@ -7,13 +8,7 @@ function ModalFilterStatistics({
   month,
   setMonth,
   getStatistics
-}: {
-  setYear: (year: string) => void
-  year: string
-  month: string
-  setMonth: (month: string) => void
-  getStatistics: () => void
-}) {
+}: ModalFilterStatisticsType) {
   const sortedMonths = Object.entries(months).sort(
     (a, b) => parseInt(a[0]) - parseInt(b[0])
   )

@@ -30,6 +30,7 @@ function Dates() {
     setCreatedTitle("")
     setCreatedMessage("")
   }
+
   const openSale = async (initialState: TableData) => {
     setInitialState(initialState)
     if (initialState.completed === true) {
@@ -69,7 +70,7 @@ function Dates() {
       }, 2000)
     }
   }
-  const deleteDate = async (initialState: TableData) => {
+  const deleteDate = async (initialState: TableData | undefined) => {
     const resetAlert = () => {
       setOpenAlert(false)
       setOpenErrorAlert(false)
@@ -104,7 +105,9 @@ function Dates() {
       <WraperContainer>
         <div className="w-full p-2 flex justify-end">
           <GeneralButton
-            onClick={(event) => {
+            onClick={(
+              event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+            ) => {
               event.stopPropagation()
               setOpenModal(true)
             }}>

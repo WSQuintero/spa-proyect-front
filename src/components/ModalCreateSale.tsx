@@ -4,21 +4,16 @@ import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 import SuccessAlert from "./SuccessAlert"
 import ErrorAlert from "./ErrorAlert"
+import { ModalCreateSaleType } from "../types/ModalCreateSaleType"
 
 function ModalCreateSale({
   setOpenModal,
   openAlert,
   setOpenAlert,
   completeDate
-}: {
-  setOpenModal: (openModal: boolean) => void
-  openAlert: boolean
-  setOpenAlert: (openAlert: boolean) => void
-  completeDate: () => void
-}) {
+}: ModalCreateSaleType) {
   const { $Sales } = useContext(DataContext)
   const { token } = useContext(LoginContext)
-
   const { handleSubmit, control } = useForm()
   const [createdTitle, setCreatedTitle] = useState("")
   const [createdMessage, setCreatedMessage] = useState("")
@@ -37,7 +32,7 @@ function ModalCreateSale({
       body: {
         ...finalData,
         amount: Number(finalData.amount),
-        paid: finalData.paid === "true"
+        paid: String(finalData.paid) === "true"
       }
     })
 

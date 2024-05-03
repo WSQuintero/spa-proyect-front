@@ -1,5 +1,7 @@
+import { ServicesType } from "../types/ServicesType"
+
 export class DatesService {
-  async get({ token }: { token: string }) {
+  async get({ token }: ServicesType) {
     try {
       const options = {
         headers: {
@@ -26,7 +28,7 @@ export class DatesService {
     }
   }
 
-  async create({ token, body }: { token: string; body: TableData }) {
+  async create({ token, body }: ServicesType) {
     try {
       const options = {
         headers: {
@@ -54,15 +56,7 @@ export class DatesService {
     }
   }
 
-  async update({
-    token,
-    body,
-    id
-  }: {
-    token: string
-    body: TableData
-    id: string
-  }) {
+  async update({ token, body, id }: ServicesType) {
     try {
       const options = {
         headers: {
@@ -89,7 +83,7 @@ export class DatesService {
       return { status: false, data: error }
     }
   }
-  async delete({ token, id }: { token: string; id: string }) {
+  async delete({ token, id }: ServicesType) {
     try {
       const options = {
         headers: {

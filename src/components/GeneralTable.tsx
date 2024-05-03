@@ -7,6 +7,7 @@ import { orderBills, orderDates, orderSales } from "../constants/constants"
 import { convertTo12HourFormat, formatCurrency } from "../assets/utils/utils"
 import ModalDetailInformation from "./ModalDetailInformation"
 import ModalConfirmation from "./ModalConfirmation"
+import { GeneralTableTypeComponent } from "../types/GeneralTableTypes"
 
 function GeneralTable({
   data,
@@ -14,32 +15,27 @@ function GeneralTable({
   setInitialState,
   complete,
   toDelete
-}: {
-  data: TableData[]
-  setOpenUpdateModal: (openUpdateModal: boolean) => void
-  setInitialState: (openInitialState: TableData) => void
-  setOpenAlert: (openAlert: boolean) => void
-  openAlert: boolean
-  complete: (initialState: TableData) => void
-  toDelete: (initialState: TableData) => void
-}) {
+}: GeneralTableTypeComponent) {
   const location = useLocation()
   const [activeFilter, setActiveFilter] = useState({ title: "" })
+  const [actualElement, setActualElement] = useState<TableData | undefined>()
+  const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
+  const [actualData, setActualData] = useState<TableData | undefined>()
   const [filterData, setFilterData] = useState<{
     data: TableData[]
   }>({ data: [] })
-  const [actualElement, setActualElement] = useState<TableData | undefined>()
-  const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
-  const [actualData, setActualData] = useState<TableData>({})
+
   const handleFilter = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
     title: string
   ) => {
     const inputValue = event.target.value
     const filteredData = data.filter(
-      (item) =>
-        item[title] !== undefined &&
-        String(item[title])?.toLowerCase()?.includes(inputValue.toLowerCase())
+      (item: TableData) =>
+        item[title as keyof TableData] !== undefined &&
+        String(item[title as keyof TableData])
+          ?.toLowerCase()
+          ?.includes(inputValue.toLowerCase())
     )
 
     setFilterData({ data: filteredData })
@@ -47,7 +43,7 @@ function GeneralTable({
 
   const confirm = () => {
     toDelete(actualData)
-    setActualData({})
+    setActualData(undefined)
     setTimeout(() => {
       setOpenModalConfirmation(false)
     }, 2000)
@@ -61,7 +57,7 @@ function GeneralTable({
       <div className="w-full flex justify-end">
         <GeneralButton
           type="button"
-          onClick={(event) => {
+          onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             event.stopPropagation()
             setFilterData({ data: [] })
           }}>
@@ -178,11 +174,11 @@ function GeneralTable({
                           </td>
                         ) : (
                           <td className="px-6 py-4 " key={colIndex}>
-                            {dat[title] === true
+                            {dat[title as keyof TableData] === true
                               ? "Si"
-                              : dat[title] === false
+                              : dat[title as keyof TableData] === false
                               ? "No "
-                              : dat[title]}
+                              : dat[title as keyof TableData]}
                           </td>
                         )}
                       </React.Fragment>
@@ -191,7 +187,9 @@ function GeneralTable({
                   {location.pathname === "/dates" && (
                     <td className="px-6 py-4 text-right">
                       <GeneralButton
-                        onClick={(event) => {
+                        onClick={(
+                          event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                        ) => {
                           event.stopPropagation()
                           complete(dat)
                         }}>
@@ -201,7 +199,9 @@ function GeneralTable({
                   )}
                   <td className="px-6 py-4 text-right">
                     <GeneralButton
-                      onClick={(event) => {
+                      onClick={(
+                        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                      ) => {
                         event.stopPropagation()
                         setOpenUpdateModal(true)
                         setInitialState(dat)
@@ -213,7 +213,9 @@ function GeneralTable({
 
                   <td className="px-6 py-4 text-right">
                     <GeneralButton
-                      onClick={(event) => {
+                      onClick={(
+                        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                      ) => {
                         event.stopPropagation()
                         setActualData(dat)
                         setOpenModalConfirmation(true)

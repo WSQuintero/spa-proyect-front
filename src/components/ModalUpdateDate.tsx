@@ -4,18 +4,14 @@ import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 import SuccessAlert from "./SuccessAlert"
 import ErrorAlert from "./ErrorAlert"
+import { ModalUpdateType } from "../types/ModalUpdateType"
 
 function ModalUpdateDate({
   setOpenModal,
   openAlert,
   setOpenAlert,
   initialState
-}: {
-  setOpenModal: (openModal: boolean) => void
-  openAlert: boolean
-  setOpenAlert: (openAlert: boolean) => void
-  initialState: TableData
-}) {
+}: ModalUpdateType) {
   const { $Dates } = useContext(DataContext)
   const { token } = useContext(LoginContext)
 

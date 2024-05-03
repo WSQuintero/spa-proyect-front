@@ -12,11 +12,11 @@ export const LoginContext = createContext<LoginContextType>({
 export function LoginContextProvider({ children }: { children: ReactNode }) {
   const $Login = useMemo(() => new LoginService(), [])
   const [token, setToken] = useState("")
+
   const isValidated = useMemo(() => {
     return async () => {
       const tnString = localStorage.getItem("s_p_a")
       const tn = JSON.parse(String(tnString))?.tn || "invalid"
-      console.log(tn)
 
       try {
         const { status } = await $Login.validateLogin({

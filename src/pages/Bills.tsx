@@ -22,7 +22,7 @@ function Bills() {
   const { $Bills } = useContext(DataContext)
   const { token } = useContext(LoginContext)
 
-  const deleteBill = async (initialState: TableData) => {
+  const deleteBill = async (initialState: TableData | undefined) => {
     const resetAlert = () => {
       setOpenAlert(false)
       setOpenErrorAlert(false)
@@ -56,7 +56,7 @@ function Bills() {
     <WraperContainer>
       <div className="w-full p-2 flex justify-end">
         <GeneralButton
-          onClick={(event) => {
+          onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             event.stopPropagation()
             setOpenModal(true)
           }}>

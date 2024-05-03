@@ -4,18 +4,14 @@ import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 import SuccessAlert from "./SuccessAlert"
 import ErrorAlert from "./ErrorAlert"
+import { ModalUpdateType } from "../types/ModalUpdateType"
 
 function ModalUpdateBill({
   setOpenModal,
   openAlert,
   setOpenAlert,
   initialState
-}: {
-  setOpenModal: (openModal: boolean) => void
-  openAlert: boolean
-  setOpenAlert: (openAlert: boolean) => void
-  initialState: TableData
-}) {
+}: ModalUpdateType) {
   const { $Bills } = useContext(DataContext)
   const { token } = useContext(LoginContext)
 
@@ -37,7 +33,7 @@ function ModalUpdateBill({
       body: {
         ...finalData,
         amount: Number(finalData.amount),
-        paid: finalData.paid === "true"
+        paid: String(finalData.paid) === "true"
       },
       id: String(initialState?.id)
     })

@@ -1,13 +1,7 @@
+import { ServicesType } from "../types/ServicesType"
+
 export class StatisticsService {
-  async get({
-    token,
-    year,
-    month
-  }: {
-    token: string
-    year: string
-    month: string
-  }) {
+  async get({ token, year, month }: ServicesType) {
     try {
       const options = {
         headers: {

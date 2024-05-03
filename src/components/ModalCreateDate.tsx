@@ -4,19 +4,15 @@ import { DataContext } from "../context/DataContext"
 import { LoginContext } from "../context/LoginContext"
 import SuccessAlert from "./SuccessAlert"
 import ErrorAlert from "./ErrorAlert"
+import { ModalCreateDateType } from "../types/ModalCreateDateType"
 
 function ModalCreateDate({
   setOpenModal,
   openAlert,
   setOpenAlert
-}: {
-  setOpenModal: (openModal: boolean) => void
-  openAlert: boolean
-  setOpenAlert: (openAlert: boolean) => void
-}) {
+}: ModalCreateDateType) {
   const { $Dates } = useContext(DataContext)
   const { token } = useContext(LoginContext)
-
   const { handleSubmit, control } = useForm()
   const [initialTime, setInitialTime] = useState("")
   const [createdTitle, setCreatedTitle] = useState("")

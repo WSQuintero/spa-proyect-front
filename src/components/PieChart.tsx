@@ -6,13 +6,12 @@ const PieChart = ({
 }: {
   filterStatistics: TableData[] | null
 }) => {
-  const chartRef = useRef<HTMLCanvasElement>(null) // Especifica el tipo de ref como HTMLCanvasElement
+  const chartRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     if (chartRef.current) {
-      const ctx = chartRef.current.getContext("2d") // Esto debería funcionar ahora
+      const ctx = chartRef.current.getContext("2d")
       if (ctx) {
-        // Asegúrate de que ctx no sea nulo
         const pieChart = new Chart(ctx, {
           type: "pie",
           data: {
@@ -42,7 +41,7 @@ const PieChart = ({
         })
 
         return () => {
-          pieChart.destroy() // Limpia el gráfico al desmontar el componente
+          pieChart.destroy()
         }
       }
     }

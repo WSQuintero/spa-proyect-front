@@ -1,3 +1,5 @@
+import { ServicesType } from "../types/ServicesType"
+
 export class LoginService {
   async login({ email, password }: { email: string; password: string }) {
     try {
@@ -26,7 +28,7 @@ export class LoginService {
     }
   }
 
-  async validateLogin({ token }: { token: string }) {
+  async validateLogin({ token }: ServicesType) {
     try {
       const options = {
         headers: {

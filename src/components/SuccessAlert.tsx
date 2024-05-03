@@ -1,14 +1,6 @@
-import React from "react"
+import { SuccessAlertType } from "../types/SuccessAlertType"
 
-function SuccessAlert({
-  title,
-  message,
-  setOpenAlert
-}: {
-  title: string
-  message: string
-  setOpenAlert: (openAlert: boolean) => void
-}) {
+function SuccessAlert({ title, message, setOpenAlert }: SuccessAlertType) {
   return (
     <div
       role="alert"
