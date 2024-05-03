@@ -20,20 +20,20 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
         openSiderBar && "translate-x-0"
       )}
       aria-label="Sidebar">
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+      <div className="h-full px-3 py-4 overflow-y-auto bg-black bg-opacity-90 dark:bg-gray-800 text-gray-200">
         <ul className="space-y-2 font-medium">
           <li>
             <NavLink
               to="/dashboard"
               className={({ isActive, isPending }) =>
                 isPending
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
                   : isActive
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
-                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 text-gray-900 hover:text-gray-900 bg-gray-200 w-full"
+                  : "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
               }>
               <svg
-                className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover: dark:group-hover:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -49,10 +49,10 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
               to="/dates"
               className={({ isActive, isPending }) =>
                 isPending
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
                   : isActive
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
-                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 bg-gray-200 w-full"
+                  : "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
               }>
               <GrSchedule />
 
@@ -64,10 +64,10 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
               to="/bills"
               className={({ isActive, isPending }) =>
                 isPending
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
                   : isActive
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
-                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 bg-gray-200 w-full"
+                  : "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
               }>
               <GiExpense />
 
@@ -79,10 +79,10 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
               to="/sales"
               className={({ isActive, isPending }) =>
                 isPending
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
                   : isActive
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
-                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 bg-gray-200 w-full"
+                  : "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
               }>
               <MdPointOfSale />
               <span className="flex-1 ms-3 whitespace-nowrap">Ventas</span>
@@ -93,10 +93,10 @@ function SideBar({ setOpenSiderBar, openSiderBar }: Sidebar) {
               to="/schedule"
               className={({ isActive, isPending }) =>
                 isPending
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
                   : isActive
-                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 bg-gray-200 w-full"
-                  : "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700  w-full"
+                  ? "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 bg-gray-200 w-full"
+                  : "flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900  w-full"
               }>
               <GrSchedules />
 

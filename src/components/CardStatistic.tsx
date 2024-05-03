@@ -7,7 +7,7 @@ function CardStatistic({
   filterStatistics: TableData[] | null
 }) {
   return (
-    <div className="mt-5">
+    <div className=" shadow-lg  bg-white/70">
       {filterStatistics?.map((data, index) => (
         <div
           key={index}

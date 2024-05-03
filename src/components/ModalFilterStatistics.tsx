@@ -18,7 +18,9 @@ function ModalFilterStatistics({
     (a, b) => parseInt(a[0]) - parseInt(b[0])
   )
   return (
-    <div id="crud-modal" className=" w-full max-w-md rounded-lg shadow p-5">
+    <div
+      id="crud-modal"
+      className=" w-full max-w-md rounded-lg shadow-lg p-5 bg-white/70">
       <div className="relative p-4 w-full max-w-md max-h-full flex flex-col justify-center items-center gap-5">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 overflow-auto max-h-[90vh] ">
           <div className="flex flex-col sm:flex-row items-center justify-center p-2 md:px-5 border-b rounded-t dark:border-gray-600 ">

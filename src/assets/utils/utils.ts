@@ -8,10 +8,13 @@ export function formatCurrency(number: number) {
 export function getDaysOfWeekStartingFromMonday() {
   const today = new Date()
   const currentDay = today.getDay()
-  const mondayOffset = currentDay === 0 ? 6 : currentDay - 1
 
-  const mondayTimestamp = today.getTime() - mondayOffset * 24 * 60 * 60 * 1000
-  const mondayDate = new Date(mondayTimestamp)
+  // Ajustar el cálculo del desplazamiento para obtener el lunes de la semana actual
+  const mondayOffset = currentDay === 0 ? 6 : currentDay
+
+  // Crear la fecha del lunes de la semana actual
+  const mondayDate = new Date(today)
+  mondayDate.setDate(mondayDate.getDate() - mondayOffset)
 
   const daysOfWeek = []
 

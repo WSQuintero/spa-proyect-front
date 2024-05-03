@@ -73,8 +73,8 @@ function Dashboard() {
           )}
         </div>
       </div>
-      <div className="w-full h-[500px] p-5 items-center">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full h-full">
+      <div className="w-full h-[500px] p-5 items-center ">
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full h-full  shadow-lg  bg-white/70">
           <PieChart filterStatistics={filterStatistics} />
         </div>
       </div>

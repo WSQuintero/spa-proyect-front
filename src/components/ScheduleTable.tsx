@@ -28,7 +28,7 @@ function ScheduleTable() {
   }, [dates])
 
   return (
-    <div className="overflow-x-auto  w-full border border-gray-600">
+    <div className="overflow-x-auto  w-full border border-gray-600 text-sm 2xl:text-xl  shadow-lg  bg-white/70">
       <table className="min-w-full border-collapse border border-gray-800 ">
         <thead>
           <tr>
@@ -37,7 +37,7 @@ function ScheduleTable() {
               <th key={index} className="border border-gray-800 p-2 ">
                 {days[index]}
                 <br />
-                {day}
+                <span className="text-gray-500 text-xs">{day}</span>
               </th>
             ))}
           </tr>
@@ -52,7 +52,7 @@ function ScheduleTable() {
                 <td
                   key={dayIndex}
                   className={`border border-gray-200 p-2 text-white text-center ${
-                    isSlotOccupied(day, hour)?.clientName ? "bg-green-500" : ""
+                    isSlotOccupied(day, hour)?.date ? "bg-green-300" : ""
                   }`}>
                   {isSlotOccupied(day, hour)?.clientName}
                   <br />

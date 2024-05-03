@@ -2,14 +2,13 @@ import { useContext, useState } from "react"
 import { handleLogin } from "../events/login.js"
 import { LoginContext } from "../context/LoginContext.tsx"
 import { LoginTypes } from "../types/Login"
-import { useNavigate } from "react-router"
 import useValidateToken from "../customHooks/useValidateToken.tsx"
+import GeneralButton from "../components/GeneralButton.tsx"
 
 function Login() {
   const [visible, setVisible] = useState(false)
   const { $Login, setToken } = useContext(LoginContext)
   const [error, setError] = useState<string>("")
-  const navigate = useNavigate()
   useValidateToken()
 
   const errors: LoginTypes = {
@@ -21,33 +20,34 @@ function Login() {
   const translateError: string = errors[error] || ""
 
   return (
-    <section className="relative flex flex-wrap lg:h-screen lg:items-center">
-      <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-lg text-center">
-          <h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
-          <p className="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
-          </p>
+    <section className="relative flex flex-wrap lg:h-screen lg:items-center lg:max-h-screen overflow-hidden">
+      <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24 bg-black flex flex-col justify-center items-center h-full">
+        <img
+          src="/login.png"
+          alt="login"
+          className="absolute z-0 mt-20 opacity-35 object-contain max-h-screen"
+        />
+        <div className="mx-auto max-w-lg text-center z-50">
+          <h1 className="text-2xl font-bold sm:text-3xl text-white">
+            ¡Bienvenido!
+          </h1>
         </div>
 
         <form
           action="#"
-          className="mx-auto mb-0 mt-8 max-w-md space-y-4"
-          onSubmit={(event) =>
-            handleLogin(event, $Login, setToken, setError, navigate)
-          }>
-          <div>
+          className="mx-auto mb-0 mt-8 max-w-md space-y-4 w-full"
+          onSubmit={(event) => handleLogin(event, $Login, setToken, setError)}>
+          <div className="w-full">
             <label htmlFor="email" className="sr-only">
               Email
             </label>
 
-            <div className="relative">
+            <div className="relative w-full">
               <input
                 type="email"
                 name="email"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter email"
+                placeholder="Ingresa tu email"
               />
 
               <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -70,7 +70,7 @@ function Login() {
 
           <div>
             <label htmlFor="password" className="sr-only">
-              Password
+              Contraseña
             </label>
 
             <div className="relative">
@@ -78,7 +78,7 @@ function Login() {
                 type={`${!visible ? "password" : "text"}`}
                 name="password"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter password"
+                placeholder="Ingresa la contraseña"
               />
 
               <span
@@ -108,27 +108,29 @@ function Login() {
           </div>
 
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">
+            {/* <p className="text-sm text-gray-500">
               No account?
               <a className="underline" href="#">
                 Sign up
               </a>
-            </p>
+            </p> */}
 
-            <button
+            <GeneralButton
               type="submit"
-              className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
-              Sign in
-            </button>
+              className="border border-gray-200 w-full hover:scale-105 transition-transform duration-200 rounded-lg px-5 py-3 text-sm font-medium text-white">
+              Iniciar sesión
+            </GeneralButton>
           </div>
-          <span className="text-red-400">{translateError || ""}</span>
+          <div className="pt-10 w-full text-center">
+            <span className="text-red-400">{translateError || ""}</span>
+          </div>
         </form>
       </div>
 
       <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
         <img
           alt=""
-          src="https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+          src="/login.jpg"
           className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
