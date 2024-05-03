@@ -35,7 +35,7 @@ function Login() {
 
         <form
           action="#"
-          className="mx-auto mb-0 mt-8 max-w-md space-y-4 w-full"
+          className="mx-auto mb-0 mt-8 max-w-md space-y-4 w-full z-50"
           onSubmit={(event) => handleLogin(event, $Login, setToken, setError)}>
           <div className="w-full">
             <label htmlFor="email" className="sr-only">
