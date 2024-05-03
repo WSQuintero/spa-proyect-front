@@ -1,15 +1,21 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { handleLogin } from "../events/login.js"
 import { LoginContext } from "../context/LoginContext.tsx"
 import { LoginTypes } from "../types/Login"
-import useValidateToken from "../customHooks/useValidateToken.tsx"
 import GeneralButton from "../components/GeneralButton.tsx"
+import { useNavigate } from "react-router"
 
 function Login() {
   const [visible, setVisible] = useState(false)
-  const { $Login, setToken } = useContext(LoginContext)
+  const { $Login, setToken, token } = useContext(LoginContext)
   const [error, setError] = useState<string>("")
-  useValidateToken()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard")
+    }
+  }, [token])
 
   const errors: LoginTypes = {
     "Incorrect password": "Contraseña incorrecta",

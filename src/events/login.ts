@@ -20,6 +20,7 @@ export const handleLogin = async (
 
     if (response.status) {
       setToken(response.data.token)
+      localStorage.setItem("s_p_a", JSON.stringify({ tn: response.data.token }))
     } else {
       setError(response.data.message)
     }
