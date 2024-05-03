@@ -142,14 +142,14 @@ function Dates() {
           />
         )}
       </WraperContainer>
-      {openAlert && (
+      {openAlert && createdTitle && createdMessage && (
         <SuccessAlert
           setOpenAlert={setOpenAlert}
           title={createdTitle}
           message={createdMessage}
         />
       )}
-      {openErrorAlert && (
+      {openErrorAlert && createdTitle && createdMessage && (
         <ErrorAlert
           setOpenErrorAlert={setOpenErrorAlert}
           title={createdTitle}

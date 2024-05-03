@@ -6,6 +6,7 @@ import React, { ChangeEvent, useState } from "react"
 import { orderBills, orderDates, orderSales } from "../constants/constants"
 import { convertTo12HourFormat, formatCurrency } from "../assets/utils/utils"
 import ModalDetailInformation from "./ModalDetailInformation"
+import ModalConfirmation from "./ModalConfirmation"
 
 function GeneralTable({
   data,
@@ -28,7 +29,8 @@ function GeneralTable({
     data: TableData[]
   }>({ data: [] })
   const [actualElement, setActualElement] = useState<TableData | undefined>()
-
+  const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
+  const [actualData, setActualData] = useState<TableData>({})
   const handleFilter = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
     title: string
@@ -43,6 +45,17 @@ function GeneralTable({
     setFilterData({ data: filteredData })
   }
 
+  const confirm = () => {
+    toDelete(actualData)
+    setActualData({})
+    setTimeout(() => {
+      setOpenModalConfirmation(false)
+    }, 2000)
+  }
+
+  const reject = () => {
+    setOpenModalConfirmation(false)
+  }
   return (
     <>
       <div className="w-full flex justify-end">
@@ -202,7 +215,8 @@ function GeneralTable({
                     <GeneralButton
                       onClick={(event) => {
                         event.stopPropagation()
-                        toDelete(dat)
+                        setActualData(dat)
+                        setOpenModalConfirmation(true)
                       }}>
                       <MdOutlineDelete />
                     </GeneralButton>
@@ -218,6 +232,9 @@ function GeneralTable({
           data={actualElement}
           setActualElement={setActualElement}
         />
+      )}
+      {openModalConfirmation && (
+        <ModalConfirmation confirm={confirm} reject={reject} />
       )}
     </>
   )

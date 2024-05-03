@@ -37,9 +37,9 @@ function ModalCreateDate({
     })
 
     if (status) {
-      setOpenAlert(true)
       setCreatedTitle("Correcto")
       setCreatedMessage("Cita creada correctamente")
+      setOpenAlert(true)
 
       setTimeout(() => {
         resetAlert()

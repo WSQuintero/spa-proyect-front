@@ -1,3 +1,5 @@
+import React from "react"
+
 function SuccessAlert({
   title,
   message,
@@ -29,7 +31,7 @@ function SuccessAlert({
         </span>
 
         <div className="flex-1">
-          <strong className="block font-medium text-gray-900"> {title}</strong>
+          <strong className="block font-medium text-gray-900">{title}</strong>
 
           <p className="mt-1 text-sm text-gray-700">{message}</p>
         </div>

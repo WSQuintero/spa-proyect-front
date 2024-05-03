@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { ReactNode, useContext, useEffect, useState } from "react"
 import { LoginContext } from "../context/LoginContext"
 
@@ -16,8 +16,6 @@ function PrivateRoute({ element }: PrivateRouteProps) {
       const isValidate = await isValidated()
       if (!isValidate) {
         setValidate(false)
-        console.log(isValidate)
-        // Redirect to the login page if the user is not authenticated
         navigate("/login")
         return
       }
@@ -27,7 +25,6 @@ function PrivateRoute({ element }: PrivateRouteProps) {
     validate()
   }, [])
 
-  // Return the provided element if the user is authenticated
   return <>{validate && element}</>
 }
 
