@@ -26,8 +26,8 @@ function Login() {
   const translateError: string = errors[error] || ""
 
   return (
-    <section className="relative flex flex-wrap lg:h-screen lg:items-center lg:max-h-screen overflow-hidden">
-      <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24 bg-black flex flex-col justify-center items-center h-full">
+    <section className="relative flex max-h-screen flex-wrap min-h-screen lg:h-screen lg:items-center  overflow-hidden">
+      <div className="shrink-0 w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24 bg-black flex flex-col justify-center items-center h-full">
         <img
           src="/login.png"
           alt="login"
@@ -133,7 +133,7 @@ function Login() {
         </form>
       </div>
 
-      <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+      <div className="relative min-h-[500px] h-full  w-full lg:h-full lg:w-1/2 shrink-0">
         <img
           alt=""
           src="/login.jpg"

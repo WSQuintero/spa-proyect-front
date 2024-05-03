@@ -17,6 +17,7 @@ function PrivateRoute({ element }: PrivateRouteProps) {
       if (!isValidate) {
         setValidate(false)
         navigate("/login")
+        localStorage.removeItem("s_p_a")
         return
       }
       setValidate(true)
